@@ -68,7 +68,16 @@ namespace Icebreaker
         {
             try
             {
-                var senderAadId = activity.From.Properties["aadObjectId"].ToString();
+                var senderAadId = string.Empty;
+                try
+                {
+                    senderAadId = activity.From.Properties["aadObjectId"].ToString();
+                }
+                catch
+                {
+                    senderAadId = "unknown";
+                }
+
                 var tenantId = activity.GetChannelData<TeamsChannelData>().Tenant.Id;
 
                 if (string.Equals(activity.Text, "optout", StringComparison.InvariantCultureIgnoreCase))
