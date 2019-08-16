@@ -39,7 +39,7 @@ namespace Icebreaker.Controllers
         [Route("api/processnow/{key}")]
         public IHttpActionResult Get([FromUri]string key)
         {
-            var isKeyMatch = object.Equals(key, CloudConfigurationManager.GetSetting("Key"));
+            var isKeyMatch = object.Equals(key, CloudConfigurationManager.GetSetting("PairingKey"));
             if (isKeyMatch)
             {
                 HostingEnvironment.QueueBackgroundWorkItem(ct => this.MakePairs());
